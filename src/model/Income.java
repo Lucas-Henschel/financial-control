@@ -29,8 +29,8 @@ public class Income extends Launch {
     } 
 
     public void setIncomeCategory(IncomeCategory incomeCategory) {
-	if (incomeCategory == null) {
-            throw new IllegalArgumentException("Categoria não pode ser nula");
+	if (incomeCategory == null || incomeCategory == IncomeCategory.DEFAULT) {
+            throw new IllegalArgumentException("Categoria deve ser informada");
         }
 	
         this.incomeCategory = incomeCategory;

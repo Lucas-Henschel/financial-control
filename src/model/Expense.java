@@ -29,8 +29,8 @@ public class Expense extends Launch {
     } 
 	
     public void setExpenseCategory(ExpenseCategory expenseCategory) {
-	if (expenseCategory == null) {
-            throw new IllegalArgumentException("Categoria não pode ser nula");
+	if (expenseCategory == null || expenseCategory == ExpenseCategory.DEFAULT) {
+            throw new IllegalArgumentException("Categoria deve ser informada");
         }
         
 	this.expenseCategory = expenseCategory;

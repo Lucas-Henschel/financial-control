@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Expense;
 import model.FinancialControl;
+import utils.ConverterUtils;
 
 /**
  *
@@ -23,8 +24,6 @@ import model.FinancialControl;
  */
 public class AddExpenseView extends javax.swing.JFrame {
     public static AddExpenseView addExpenseView;
-    
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     
     /**
      * Creates new form AddIncomeView
@@ -106,16 +105,6 @@ public class AddExpenseView extends javax.swing.JFrame {
         
         dispose();
     }
-    
-    /**
-     * Valida as informações preenchidas no formulário.
-     *
-     * @return {@code true} se todas as informações do formulário forem válidas; 
-     *         {@code false} caso contrário.
-     */
-    private boolean validInformations() {
-        return !jDateTime.getText().equals("") && !jAmount.getText().equals("") && !jExpenseCategory.getSelectedItem().equals(ExpenseCategory.DEFAULT);
-    }
 
     /**
      * Formata os dados do formulário e envia para a camada de controle para salvar uma despesa.
@@ -123,16 +112,13 @@ public class AddExpenseView extends javax.swing.JFrame {
      */
     private void saveExpense() {
         try {
-            if (validInformations()) {
-                double amount = Double.parseDouble(jAmount.getText().replace(",", "."));
-                ExpenseCategory expenseCategory = (ExpenseCategory) jExpenseCategory.getSelectedItem();
-                
-                LocalDate date = LocalDate.parse(jDateTime.getText(), formatter);
-                LocalDateTime dateTime = date.atTime(LocalTime.now());
+            LocalDateTime dateTime = ConverterUtils.convertToLocalDateTime(jDateTime.getText());
+            ExpenseCategory expenseCategory = (ExpenseCategory) jExpenseCategory.getSelectedItem();   
+            ConverterUtils.validCategory(null, expenseCategory);
+            double amount = ConverterUtils.convertToAmount(jAmount.getText());
 
-                FinancialControl.createExpense(amount, expenseCategory, dateTime);
-                resetInteractions();
-            }
+            FinancialControl.createExpense(amount, expenseCategory, dateTime);
+            resetInteractions();
         } catch (IOException | IllegalArgumentException | DateTimeParseException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
@@ -194,6 +180,7 @@ public class AddExpenseView extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jDateTime.setActionCommand("<Not Set>");
         jDateTime.setPreferredSize(new java.awt.Dimension(300, 40));
 
         jDateTimeLabel.setText("Data do lançamento");

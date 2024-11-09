@@ -43,7 +43,7 @@ public class FinancialControl {
      * @param dateTime 
      * @throws IOException
      */
-    public static void createExpense(double amount, ExpenseCategory expenseCategory, LocalDateTime dateTime) throws IOException, IllegalArgumentException {
+    public static void createExpense(double amount, ExpenseCategory expenseCategory, LocalDateTime dateTime) throws IOException, IllegalArgumentException { 
         Expense expense = new Expense();
         expense.setDateTime(dateTime);
         expense.setAmount(amount);

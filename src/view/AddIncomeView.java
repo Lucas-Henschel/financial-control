@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.FinancialControl;
 import model.Income;
+import utils.ConverterUtils;
 
 /**
  *
@@ -23,8 +24,6 @@ import model.Income;
  */
 public class AddIncomeView extends javax.swing.JFrame {
     public static AddIncomeView addIncomeView;
-    
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     
     /**
      * Creates new form AddIncomeView
@@ -108,16 +107,6 @@ public class AddIncomeView extends javax.swing.JFrame {
     }
     
     /**
-     * Valida os campos do formulário para garantir que todos os dados obrigatórios foram preenchidos.
-     *
-     * @return {@code true} se todos os campos obrigatórios do formulário estiverem preenchidos corretamente; 
-     *         {@code false} caso contrário.
-     */
-    private boolean validInformations() {
-        return !jDateTime.getText().equals("") && !jAmount.getText().equals("") && !jIncomeCategory.getSelectedItem().equals(IncomeCategory.DEFAULT);
-    }
-    
-    /**
      * Formata os dados de entrada e envia-os para a camada de controle para criar um registro de receita.
      *
      * @throws IOException
@@ -126,16 +115,13 @@ public class AddIncomeView extends javax.swing.JFrame {
      */
     private void saveIncome() {
         try {
-            if (validInformations()) {
-                double amount = Double.parseDouble(jAmount.getText().replace(",", "."));
-                IncomeCategory incomeCategory = (IncomeCategory) jIncomeCategory.getSelectedItem();
-                
-                LocalDate date = LocalDate.parse(jDateTime.getText(), formatter);
-                LocalDateTime dateTime = date.atTime(LocalTime.now());
-
-                FinancialControl.createIncome(amount, incomeCategory, dateTime);
-                resetInteractions();
-            }
+            LocalDateTime dateTime = ConverterUtils.convertToLocalDateTime(jDateTime.getText());
+            IncomeCategory incomeCategory = (IncomeCategory) jIncomeCategory.getSelectedItem();   
+            ConverterUtils.validCategory(incomeCategory, null);
+            double amount = ConverterUtils.convertToAmount(jAmount.getText());
+            
+            FinancialControl.createIncome(amount, incomeCategory, dateTime);
+            resetInteractions();
         } catch (IOException | IllegalArgumentException | DateTimeParseException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }

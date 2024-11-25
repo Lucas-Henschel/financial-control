@@ -289,11 +289,14 @@ public class MainView extends javax.swing.JFrame {
         jExportFileButton = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1315, 612));
+
+        jMain.setMinimumSize(new java.awt.Dimension(1315, 612));
 
         jIncome.setBorder(javax.swing.BorderFactory.createTitledBorder("Receita"));
 
         jAddIncome.setText("Nova receita");
-        jAddIncome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jAddIncome.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jAddIncome.setPreferredSize(new java.awt.Dimension(185, 40));
         jAddIncome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -326,7 +329,7 @@ public class MainView extends javax.swing.JFrame {
         jExpense.setBorder(javax.swing.BorderFactory.createTitledBorder("Despesa"));
 
         jAddExpense.setText("Nova despesa");
-        jAddExpense.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jAddExpense.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jAddExpense.setPreferredSize(new java.awt.Dimension(185, 40));
         jAddExpense.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -397,9 +400,9 @@ public class MainView extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jCheckBalanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jDateLabel)
-                    .addComponent(jDate, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                    .addComponent(jBalanceResult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addComponent(jDate)
+                    .addComponent(jBalanceResult, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         jCheckBalanceLayout.setVerticalGroup(
             jCheckBalanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -419,7 +422,7 @@ public class MainView extends javax.swing.JFrame {
         jTotalBalance.setPreferredSize(new java.awt.Dimension(195, 40));
 
         jExportFileButton.setText("Exportar");
-        jExportFileButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jExportFileButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jExportFileButton.setPreferredSize(new java.awt.Dimension(111, 40));
         jExportFileButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -437,18 +440,18 @@ public class MainView extends javax.swing.JFrame {
         jMainLayout.setHorizontalGroup(
             jMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jMainLayout.createSequentialGroup()
-                .addContainerGap(95, Short.MAX_VALUE)
+                .addContainerGap(100, Short.MAX_VALUE)
                 .addComponent(jIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addComponent(jExpense, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addComponent(jCheckBalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
             .addGroup(jMainLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(jMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jMainLayout.createSequentialGroup()
-                        .addComponent(jReleasesByDateTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jReleasesByDateTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTotalBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
